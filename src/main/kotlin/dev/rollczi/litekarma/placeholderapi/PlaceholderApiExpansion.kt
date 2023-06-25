@@ -8,7 +8,7 @@ import org.bukkit.OfflinePlayer
 internal class PlaceholderApiExpansion(private val karmaService: KarmaService) : PlaceholderExpansion() {
 
     override fun getIdentifier(): String {
-        return "lite_karma"
+        return "litekarma"
     }
 
     override fun getAuthor(): String {

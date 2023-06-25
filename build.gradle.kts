@@ -75,7 +75,6 @@ tasks.withType<com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar> {
     relocate("net.dzikoysk", "$prefix.net.dzikoysk")
     relocate("com.dzikoysk", "$prefix.net.dzikoysk")
     relocate("net.kyori", "$prefix.net.kyori")
-    relocate("com.google.gson", "$prefix.com.google.gson")
     relocate("com.fasterxml.jackson", "$prefix.com.fasterxml.jackson")
     relocate("org.slf4j", "$prefix.org.slf4j")
     relocate("io.leangen", "$prefix.io.leangen")
