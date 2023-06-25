@@ -10,12 +10,15 @@ import dev.rollczi.litekarma.config.ConfigService
 import dev.rollczi.litekarma.database.SqiffyConfig
 import dev.rollczi.litekarma.database.SqiffyFactory
 import dev.rollczi.litekarma.karma.KarmaConfig
+import me.clip.placeholderapi.libs.kyori.adventure.platform.AudienceProvider
+import net.kyori.adventure.platform.bukkit.BukkitAudiences
 import org.bukkit.Bukkit
 import org.bukkit.plugin.Plugin
 
 class LiteKarma(private val plugin: Plugin) {
 
     private lateinit var sqiffyDatabase: SqiffyDatabase
+    private lateinit var audienceProvider: BukkitAudiences
 
     fun onEnable() {
         if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") == null) {
@@ -27,6 +30,7 @@ class LiteKarma(private val plugin: Plugin) {
         // basic setup
         val scheduler = SchedulerBukkitImpl(plugin)
         val configService = ConfigService(plugin.dataFolder)
+        audienceProvider = BukkitAudiences.create(plugin)
 
         // database setup
         val sqiffyConfig = configService.load(SqiffyConfig::class.java)
@@ -34,7 +38,7 @@ class LiteKarma(private val plugin: Plugin) {
 
         // karma setup
         val karmaConfig = configService.load(KarmaConfig::class.java)
-        val karmaService = KarmaService(KarmaRepositorySqiffyImpl(sqiffyDatabase), scheduler, karmaConfig, plugin.server)
+        val karmaService = KarmaService(KarmaRepositorySqiffyImpl(sqiffyDatabase), scheduler, karmaConfig, plugin.server, audienceProvider)
 
         val controller = KarmaKillController(karmaService)
         Bukkit.getPluginManager().registerEvents(controller, plugin)
@@ -45,6 +49,7 @@ class LiteKarma(private val plugin: Plugin) {
 
     fun onDisable() {
         sqiffyDatabase.close()
+        audienceProvider.close()
     }
 
 }

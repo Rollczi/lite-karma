@@ -25,22 +25,29 @@ repositories {
 }
 
 dependencies {
-    compileOnly("me.clip:placeholderapi:2.11.3")
-
-    ksp("com.dzikoysk.sqiffy:sqiffy-symbol-processor:1.0.0-alpha.23")
-    implementation("com.dzikoysk.sqiffy:sqiffy:1.0.0-alpha.23")
-
     implementation(kotlin("stdlib"))
     implementation(kotlin("stdlib-jdk8"))
     implementation(kotlin("reflect"))
 
-    api("net.dzikoysk:cdn:1.14.4")
+    // bukkit & spigot
     compileOnly("org.spigotmc:spigot-api:1.19.2-R0.1-SNAPSHOT")
+    compileOnly("me.clip:placeholderapi:2.11.3")
+    implementation("net.kyori:adventure-platform-bukkit:4.3.0")
+    implementation("net.kyori:adventure-text-minimessage:4.13.1")
 
+    // config
+    api("net.dzikoysk:cdn:1.14.4")
+
+    // db
+    ksp("com.dzikoysk.sqiffy:sqiffy-symbol-processor:1.0.0-alpha.23")
+    implementation("com.dzikoysk.sqiffy:sqiffy:1.0.0-alpha.23")
     implementation("com.zaxxer:HikariCP:5.0.1")
     implementation("mysql:mysql-connector-java:8.0.33")
+
+    // logging
     implementation("org.slf4j:slf4j-simple:2.0.6")
 
+    // test
     testImplementation("org.testcontainers:mysql:1.18.1")
 
     testImplementation(kotlin("test"))
@@ -90,6 +97,11 @@ bukkit {
     author = "Rollczi"
     name = "LiteKarma"
     softDepend = listOf("PlaceholderAPI")
+/*    libraries = listOf(
+        "org.jetbrains.kotlin:kotlin-stdlib:1.8.10",
+        "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.10",
+        "org.jetbrains.kotlin:kotlin-reflect:1.8.10"
+    )*/
     version = "${project.version}"
 }
 
