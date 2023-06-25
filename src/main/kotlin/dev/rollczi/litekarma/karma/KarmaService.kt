@@ -3,6 +3,7 @@ package dev.rollczi.litekarma.karma
 import com.google.common.cache.Cache
 import com.google.common.cache.CacheBuilder
 import com.google.common.cache.CacheLoader
+import com.google.common.cache.LoadingCache
 import dev.rollczi.litekarma.legacy.LegacyColorProcessor
 import dev.rollczi.litekarma.scheduler.Scheduler
 import net.kyori.adventure.platform.bukkit.BukkitAudiences
@@ -19,7 +20,7 @@ internal class KarmaService(
     private val audienceProvider: BukkitAudiences
 ) {
 
-    private val cache: Cache<UUID, Karma> = CacheBuilder.newBuilder()
+    private val cache: LoadingCache<UUID, Karma> = CacheBuilder.newBuilder()
         .expireAfterWrite(5, TimeUnit.MINUTES)
         .expireAfterAccess(3, TimeUnit.MINUTES)
         .refreshAfterWrite(3, TimeUnit.SECONDS)
@@ -40,7 +41,15 @@ internal class KarmaService(
     }
 
     fun getCachedKarma(uuid: UUID): Karma? {
-        return cache.getIfPresent(uuid)
+        val karma = cache.getIfPresent(uuid)
+
+        if (karma == null) {
+            scheduler.async {
+                cache.refresh(uuid)
+            }
+        }
+
+        return karma
     }
 
 }
