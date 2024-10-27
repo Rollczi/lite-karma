@@ -41,7 +41,7 @@ dependencies {
     // db
     ksp("com.dzikoysk.sqiffy:sqiffy-symbol-processor:1.0.0-alpha.23")
     implementation("com.dzikoysk.sqiffy:sqiffy:1.0.0-alpha.23")
-    implementation("com.zaxxer:HikariCP:5.0.1")
+    implementation("com.zaxxer:HikariCP:5.1.0")
     implementation("mysql:mysql-connector-java:8.0.33")
 
     // logging
