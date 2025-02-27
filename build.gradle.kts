@@ -45,7 +45,7 @@ dependencies {
     implementation("mysql:mysql-connector-java:8.0.33")
 
     // logging
-    implementation("org.slf4j:slf4j-simple:2.0.6")
+    implementation("org.slf4j:slf4j-simple:2.0.17")
 
     // test
     testImplementation("org.testcontainers:mysql:1.18.1")
