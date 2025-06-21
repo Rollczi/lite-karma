@@ -36,7 +36,7 @@ dependencies {
     implementation("net.kyori:adventure-text-minimessage:4.13.1")
 
     // config
-    api("net.dzikoysk:cdn:1.14.4")
+    api("net.dzikoysk:cdn:1.14.9")
 
     // db
     ksp("com.dzikoysk.sqiffy:sqiffy-symbol-processor:1.0.0-alpha.23")
