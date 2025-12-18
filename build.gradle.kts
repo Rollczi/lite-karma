@@ -33,7 +33,7 @@ dependencies {
     compileOnly("org.spigotmc:spigot-api:1.19.2-R0.1-SNAPSHOT")
     compileOnly("me.clip:placeholderapi:2.11.3")
     implementation("net.kyori:adventure-platform-bukkit:4.3.0")
-    implementation("net.kyori:adventure-text-minimessage:4.13.1")
+    implementation("net.kyori:adventure-text-minimessage:4.26.1")
 
     // config
     api("net.dzikoysk:cdn:1.14.4")
